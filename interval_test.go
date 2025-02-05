@@ -10,10 +10,10 @@ import (
 )
 
 func TestInterval(t *testing.T) {
-	t.Run("FromInterval", func(t *testing.T) {
+	t.Run("IntervalToDuration", func(t *testing.T) {
 		t.Run("nil", func(t *testing.T) {
 			var v pgtype.Interval
-			require.Equal(t, time.Duration(0), FromInterval(v))
+			require.Equal(t, time.Duration(0), IntervalToDuration(v))
 		})
 
 		t.Run("valid", func(t *testing.T) {
@@ -24,15 +24,15 @@ func TestInterval(t *testing.T) {
 				Months:       3,
 			}
 
-			duration := FromInterval(v)
+			duration := IntervalToDuration(v)
 			require.Equal(t, time.Duration(1)*time.Microsecond+time.Duration(2)*time.Hour*24+time.Duration(3)*time.Hour*24*30, duration)
 		})
 	})
 
-	t.Run("FromIntervalPtr", func(t *testing.T) {
+	t.Run("IntervalToDurationPtr", func(t *testing.T) {
 		t.Run("nil", func(t *testing.T) {
 			var v pgtype.Interval
-			assert.Nil(t, FromIntervalPtr(v))
+			assert.Nil(t, IntervalToDurationPtr(v))
 		})
 
 		t.Run("valid", func(t *testing.T) {
@@ -43,13 +43,13 @@ func TestInterval(t *testing.T) {
 				Months:       3,
 			}
 
-			duration := FromIntervalPtr(v)
+			duration := IntervalToDurationPtr(v)
 			require.NotNil(t, duration)
 			require.Equal(t, time.Duration(1)*time.Microsecond+time.Duration(2)*time.Hour*24+time.Duration(3)*time.Hour*24*30, *duration)
 		})
 	})
 
-	t.Run("ToInterval", func(t *testing.T) {
+	t.Run("IntervalFromDuration", func(t *testing.T) {
 		t.Run("valid", func(t *testing.T) {
 			v := time.Duration(1)*time.Microsecond + time.Duration(2)*time.Hour*24 + time.Duration(3)*time.Hour*24*30
 			require.Equal(t, pgtype.Interval{
@@ -57,14 +57,14 @@ func TestInterval(t *testing.T) {
 				Microseconds: 1,
 				Days:         2,
 				Months:       3,
-			}, ToInterval(v))
+			}, IntervalFromDuration(v))
 		})
 	})
 
-	t.Run("ToIntervalPtr", func(t *testing.T) {
+	t.Run("IntervalFromDurationPtr", func(t *testing.T) {
 		t.Run("nil", func(t *testing.T) {
 			var v *time.Duration
-			assert.Equal(t, pgtype.Interval{}, ToIntervalPtr(v))
+			assert.Equal(t, pgtype.Interval{}, IntervalFromDurationPtr(v))
 		})
 
 		t.Run("valid", func(t *testing.T) {
@@ -74,7 +74,7 @@ func TestInterval(t *testing.T) {
 				Microseconds: 1,
 				Days:         2,
 				Months:       3,
-			}, ToIntervalPtr(&v))
+			}, IntervalFromDurationPtr(&v))
 		})
 	})
 }

@@ -8,25 +8,25 @@ import (
 
 var EmptyTimestamptz = pgtype.Timestamptz{}
 
-func FromTimestamptz(v pgtype.Timestamptz) time.Time {
+func TimestamptzToTime(v pgtype.Timestamptz) time.Time {
 	return v.Time
 }
 
-func FromTimestamptzPtr(v pgtype.Timestamptz) *time.Time {
+func TimestamptzToTimePtr(v pgtype.Timestamptz) *time.Time {
 	if !v.Valid {
 		return nil
 	}
 	return &v.Time
 }
 
-func ToTimestamptz(v time.Time) pgtype.Timestamptz {
+func TimestamptzFromTime(v time.Time) pgtype.Timestamptz {
 	return pgtype.Timestamptz{
 		Valid: true,
 		Time:  v,
 	}
 }
 
-func ToTimestamptzPtr(v *time.Time) pgtype.Timestamptz {
+func TimestamptzFromTimePtr(v *time.Time) pgtype.Timestamptz {
 	if v == nil {
 		return pgtype.Timestamptz{}
 	}

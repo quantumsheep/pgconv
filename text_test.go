@@ -9,46 +9,46 @@ import (
 )
 
 func TestText(t *testing.T) {
-	t.Run("FromText", func(t *testing.T) {
+	t.Run("TextToString", func(t *testing.T) {
 		t.Run("nil", func(t *testing.T) {
 			var v pgtype.Text
-			require.Equal(t, "", FromText(v))
+			require.Equal(t, "", TextToString(v))
 		})
 
 		t.Run("valid", func(t *testing.T) {
 			v := pgtype.Text{String: "test", Valid: true}
-			require.Equal(t, v.String, FromText(v))
+			require.Equal(t, v.String, TextToString(v))
 		})
 	})
 
-	t.Run("FromTextPtr", func(t *testing.T) {
+	t.Run("TextToStringPtr", func(t *testing.T) {
 		t.Run("nil", func(t *testing.T) {
 			var v pgtype.Text
-			assert.Nil(t, FromTextPtr(v))
+			assert.Nil(t, TextToStringPtr(v))
 		})
 
 		t.Run("valid", func(t *testing.T) {
 			v := pgtype.Text{String: "test", Valid: true}
-			require.Equal(t, v.String, *FromTextPtr(v))
+			require.Equal(t, v.String, *TextToStringPtr(v))
 		})
 	})
 
-	t.Run("ToText", func(t *testing.T) {
+	t.Run("TextFromString", func(t *testing.T) {
 		t.Run("valid", func(t *testing.T) {
 			v := "test"
-			require.Equal(t, pgtype.Text{String: v, Valid: true}, ToText(v))
+			require.Equal(t, pgtype.Text{String: v, Valid: true}, TextFromString(v))
 		})
 	})
 
-	t.Run("ToTextPtr", func(t *testing.T) {
+	t.Run("TextFromStringPtr", func(t *testing.T) {
 		t.Run("nil", func(t *testing.T) {
 			var v *string
-			assert.Equal(t, pgtype.Text{}, ToTextPtr(v))
+			assert.Equal(t, pgtype.Text{}, TextFromStringPtr(v))
 		})
 
 		t.Run("valid", func(t *testing.T) {
 			v := "test"
-			require.Equal(t, pgtype.Text{String: v, Valid: true}, ToTextPtr(&v))
+			require.Equal(t, pgtype.Text{String: v, Valid: true}, TextFromStringPtr(&v))
 		})
 	})
 }

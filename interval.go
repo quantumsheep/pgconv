@@ -16,7 +16,7 @@ const (
 
 var EmptyInterval = pgtype.Interval{}
 
-func FromInterval(v pgtype.Interval) time.Duration {
+func IntervalToDuration(v pgtype.Interval) time.Duration {
 	if !v.Valid {
 		return time.Duration(0)
 	}
@@ -28,16 +28,16 @@ func FromInterval(v pgtype.Interval) time.Duration {
 	return duration
 }
 
-func FromIntervalPtr(v pgtype.Interval) *time.Duration {
+func IntervalToDurationPtr(v pgtype.Interval) *time.Duration {
 	if !v.Valid {
 		return nil
 	}
 
-	duration := FromInterval(v)
+	duration := IntervalToDuration(v)
 	return &duration
 }
 
-func ToInterval(v time.Duration) pgtype.Interval {
+func IntervalFromDuration(v time.Duration) pgtype.Interval {
 	microseconds := v.Microseconds() % hourInMicroseconds
 	hours := int64(v.Hours())
 
@@ -54,10 +54,10 @@ func ToInterval(v time.Duration) pgtype.Interval {
 	}
 }
 
-func ToIntervalPtr(v *time.Duration) pgtype.Interval {
+func IntervalFromDurationPtr(v *time.Duration) pgtype.Interval {
 	if v == nil {
 		return pgtype.Interval{}
 	}
 
-	return ToInterval(*v)
+	return IntervalFromDuration(*v)
 }
