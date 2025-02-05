@@ -16,5 +16,5 @@ import (
 )
 
 text := pgconv.ToText("Hello, World!") // pgtype.Text
-str := pgconv.ToString(text)           // string
+str := pgconv.FromText(text)           // string
 ```
