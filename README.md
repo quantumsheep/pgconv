@@ -1,6 +1,6 @@
 # Pgconv
 
-Convert `pgx/v5`'s `pgtype` types to and from native Go types.
+Convert [`pgx/v5`](https://github.com/jackc/pgx)'s `pgtype` types to and from native Go types.
 
 ## How to install
 
