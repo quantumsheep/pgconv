@@ -4,7 +4,7 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
-var EmptyText = pgtype.Timestamptz{}
+var EmptyText = pgtype.Text{}
 
 func TextToString(v pgtype.Text) string {
 	return v.String
