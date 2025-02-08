@@ -28,7 +28,7 @@ func TimestamptzFromTime(v time.Time) pgtype.Timestamptz {
 
 func TimestamptzFromTimePtr(v *time.Time) pgtype.Timestamptz {
 	if v == nil {
-		return pgtype.Timestamptz{}
+		return EmptyTimestamptz
 	}
 
 	return pgtype.Timestamptz{

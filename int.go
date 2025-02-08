@@ -26,7 +26,7 @@ func Int2FromInt16(v int16) pgtype.Int2 {
 
 func Int2FromInt16Ptr(v *int16) pgtype.Int2 {
 	if v == nil {
-		return pgtype.Int2{}
+		return EmptyInt2
 	}
 
 	return pgtype.Int2{
@@ -57,7 +57,7 @@ func Int4FromInt32(v int32) pgtype.Int4 {
 
 func Int4FromInt32Ptr(v *int32) pgtype.Int4 {
 	if v == nil {
-		return pgtype.Int4{}
+		return EmptyInt4
 	}
 
 	return pgtype.Int4{
@@ -88,7 +88,7 @@ func Int8FromInt64(v int64) pgtype.Int8 {
 
 func Int8FromInt64Ptr(v *int64) pgtype.Int8 {
 	if v == nil {
-		return pgtype.Int8{}
+		return EmptyInt8
 	}
 
 	return pgtype.Int8{

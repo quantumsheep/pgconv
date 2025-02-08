@@ -26,7 +26,7 @@ func FromBool(v bool) pgtype.Bool {
 
 func FromBoolPtr(v *bool) pgtype.Bool {
 	if v == nil {
-		return pgtype.Bool{}
+		return EmptyBool
 	}
 
 	return pgtype.Bool{

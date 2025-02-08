@@ -56,7 +56,7 @@ func IntervalFromDuration(v time.Duration) pgtype.Interval {
 
 func IntervalFromDurationPtr(v *time.Duration) pgtype.Interval {
 	if v == nil {
-		return pgtype.Interval{}
+		return EmptyInterval
 	}
 
 	return IntervalFromDuration(*v)

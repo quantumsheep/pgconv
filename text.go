@@ -26,7 +26,7 @@ func TextFromString(v string) pgtype.Text {
 
 func TextFromStringPtr(v *string) pgtype.Text {
 	if v == nil {
-		return pgtype.Text{}
+		return EmptyText
 	}
 
 	return pgtype.Text{
